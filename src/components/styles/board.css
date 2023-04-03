@@ -1,0 +1,40 @@
+
+#baghchal-board {
+    height: 500px;
+    width: 500px;
+    background-color: #D7D7D7;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tiles {
+    height:100px;
+    width:100px;
+    box-sizing: border-box;
+    border: 1px solid #0E8388;
+    position: relative;
+}
+
+.no-tiles {
+    background-color: #282A3A;
+    height:100px;
+    width:100px;
+    box-sizing: border-box;
+    border: none;
+    position: relative;
+}
+
+.piece-holder {
+    background-color: #D7D7D7;
+    height: 24px;
+    width:24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #0E8388;
+    display: flex;
+    border-radius: 50%;
+    position: absolute;
+    top: -15px;
+    left:-12px;
+}
