@@ -1,9 +1,7 @@
 import tiger from "../assets/tiger_icon.png";
 import "./styles/dots.css";
-import React, {useState} from 'react';
 
 function Dots() {
-  const [boardState, setBoardState] = useState();
   let board = [];
   let activePiece = null;
 
@@ -20,20 +18,19 @@ function Dots() {
   function pieceDrop(e) {
     console.log(board[9]);
     let class_id = e.target.attributes.id.value;
-    var update_className = document.getElementById(`${class_id}`); 
-    
+    var update_className = document.getElementById(`${class_id}`);
+
     console.log(update_className);
     // update_className.attributes.class.value = "dots tiger-image";
-    update_className.setAttribute("value", "true")
+    update_className.setAttribute("value", "true");
     // console.log(update_className.attributes.class.value);
-  
 
     console.log(board[9]);
-    
+
     if (activePiece) {
       e.target.append(activePiece);
       activePiece = null;
-      for (let i = 0; i<25; i++) {
+      for (let i = 0; i < 25; i++) {
         if (board[i].props.value === "true") {
           console.log(board[i].props.className + " " + board[i].props.id);
         }
@@ -51,7 +48,7 @@ function Dots() {
       ) {
         board.push(
           <div
-            id = {`${i}${j}`}
+            id={`${i}${j}`}
             onDrop={(e) => {
               pieceDrop(e);
             }}
@@ -62,7 +59,7 @@ function Dots() {
               dragPieceStart(e);
             }}
             className="dots tiger-image"
-            value = "true"
+            value="true"
           >
             <img
               onDrop={(e) => {
@@ -95,7 +92,7 @@ function Dots() {
               dragPieceStart(e);
             }}
             className="dots"
-            value = "false"
+            value="false"
             draggable
           ></div>
         );

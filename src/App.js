@@ -1,11 +1,11 @@
 import './App.css';
-import Dots from './components/dots';
+// import Dots from './components/dots';
+import Board from './components/board';
 
 function App() {
   return (
     <div className="App">
-      {/* <BaghchalBoard></BaghchalBoard> */}
-      <Dots key="board"/>
+      <Board key="board" />
     </div>
   );
 }
