@@ -33,3 +33,30 @@
   font-size: 18px;
   transition: 1;
 }
+
+.navbar_login {
+  margin-top: 300px;
+  text-align: center;
+  margin-right: 30px;
+}
+
+.navbar_login_button {
+  background-color: #cbe4de;
+  color: black;
+  border-radius: 5px;
+  height: 35px;
+  width: 80%;
+}
+.navbar_signup {
+  margin-top: 20px;
+  text-align: center;
+  margin-right: 30px;
+}
+
+.navbar_signup_button {
+  background-color: #cbe4de;
+  color: black;
+  border-radius: 5px;
+  height: 35px;
+  width: 80%;
+}

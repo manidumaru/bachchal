@@ -1,0 +1,114 @@
+.log_in_main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+}
+.log_in_form {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  border-radius: 15px;
+  margin-top: 10px;
+}
+form {
+  display: block;
+  position: relative;
+}
+
+.form_group {
+  height: 30px;
+  width: 350px;
+  margin-top: 20px;
+  /* margin-left: 10px;
+  margin-right: 10px; */
+}
+
+.form_group input {
+  width: 70%;
+  height: 100%;
+  border-radius: 10px;
+  padding-left: 45px;
+}
+.login_icon1 {
+  position: absolute;
+  bottom: 76%;
+  left: 11%;
+}
+.login_icon2 {
+  position: absolute;
+  bottom: 50%;
+  left: 11%;
+}
+.form_checkbox {
+  display: flex;
+  flex-direction: row;
+}
+.checkbox {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.remember {
+  flex: 1;
+  justify-content: end;
+}
+.login_button_div {
+  /* text-align: center; */
+}
+.login_button {
+  height: 40px;
+  width: 80%;
+  background-color: #0e8388;
+  border-radius: 10px;
+  color: white;
+}
+.login_button_google_div {
+  margin-bottom: 30px;
+
+  text-align: center;
+}
+
+.login_button_google {
+  height: 40px;
+  width: 80%;
+  background-color: #fff;
+  border-radius: 10px;
+}
+.login_button_google_content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.login_button_google_image {
+  flex: 1;
+  margin-right: 50px;
+}
+.login_button_google_text {
+  flex: 3;
+  margin-right: 60px;
+}
+.login_footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #0e8388;
+  border-radius: 0px 0px 15px 15px;
+}
+
+/* .or_section {
+  display: flex;
+  flex-direction: row;
+} */
+
+/* .or_line {
+  height: 2px;
+  background-color: black;
+} */

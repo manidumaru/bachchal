@@ -39,6 +39,16 @@ function Navbar() {
           </div>
         </div>
       </div>
+      <div className="navbar_login">
+        <Link to="/log_in">
+          <button className="navbar_login_button">Log In</button>
+        </Link>
+      </div>
+      <div className="navbar_signup">
+        <Link to="/sign_up">
+          <button className="navbar_signup_button">Sign Up</button>
+        </Link>
+      </div>
     </div>
   );
 }
