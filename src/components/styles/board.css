@@ -1,12 +1,29 @@
 
+.board-component-holder {
+    display:flex;
+    /* border: 10px solid #0E8388; */
+}
+
 .board-holder {
     display:flex;
+    margin-right:5px;
     flex-wrap: wrap;
     height:500px;
     border: 10px solid #0E8388;
     background-image: url('../../assets/background.png');
     background-size: 500px;
     width:500px;
+}
+
+.goat-holder {
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
+    align-items: center;
+    
+    width:100px;
+    height:500px;
+    border: 10px solid #282A3A;
 }
 
 .board-position {
@@ -23,7 +40,30 @@
 }
 
 .tiger-piece {
-    height: 33px;
-    width:33px;
+    height: 40px;
+    width:40px;
     cursor: pointer;
+}
+
+.goat-image {
+    background-color: bisque;
+}
+
+.goat-piece {
+    height:50px;
+    width:50px;
+    margin:5px;
+    margin-left: 20px;
+    position: absolute;
+    /* background-color: bisque; */
+}
+
+.goat-counter {
+    margin:5px;
+    font-size: 40px;
+    color: #D7D7D7;
+    /* background-color: tomato; */
+    position: relative;
+    top:70px;
+    left:20px;
 }
