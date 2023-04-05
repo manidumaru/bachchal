@@ -35,7 +35,15 @@ function Board() {
         let dropY = parseInt(droppedCoordinate[1]);
 
         if (Math.abs(dropX-dragX) <= 1 && Math.abs(dropY-dragY) <= 1) {
-            console.log("Naice hai");
+            if (dragX % 2 !== dragY % 2) {
+                if (dropX !== dragX && dropY !== dragY) {
+                    console.log("Illegal Move");
+                    return;
+                }
+            }
+            else {
+                console.log("Naice Hai")
+            }
         }   
         else {
             console.log("Illegal Move");
