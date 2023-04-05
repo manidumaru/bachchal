@@ -1,11 +1,25 @@
-import './App.css';
-import Dots from './components/dots';
+import "./App.css";
+import Navbar from "./components/Navbar/navbar";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Play from "./components/Play/play";
+import Profile from "./components/Profile/profile";
+import Learn from "./components/Learn/learn";
+import About from "./components/About/about";
 
 function App() {
   return (
     <div className="App">
-      {/* <BaghchalBoard></BaghchalBoard> */}
-      <Dots key="board"/>
+      <Router>
+        <Navbar></Navbar>
+        {/* <BaghchalBoard></BaghchalBoard> */}
+
+        <Routes>
+          <Route path="/" element={<Play />}></Route>
+          <Route path="/profile" element={<Profile />}></Route>
+          <Route path="/learn" element={<Learn />}></Route>
+          <Route path="/about" element={<About />}></Route>
+        </Routes>
+      </Router>
     </div>
   );
 }
