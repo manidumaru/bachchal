@@ -34,64 +34,67 @@ function Board() {
             console.log(e.target.attributes.id.value);
             droppedPosition = e.target.attributes.id.value;
             boardState[droppedPosition].piece = "goat";
-            setAvailableGoats(availableGoats - 1);
+            // setAvailableGoats(availableGoats - 1)
             console.log(boardState);
             activePiece = null;
-            return;
+            return 0;
         }
-        try{
-            droppedPosition = e.target.attributes.id.value;
-        }
-        catch(err) {
-            console.log("A piece already exists there!");
-            activePiece = null;
-            return;
-        }
-        // console.log("dropped to");
-        // console.log(e.target)
-        // console.log("id = " + e.target.attributes.id.value)    
-        
-        let draggedCoordinate = boardState[draggedPosition].value.split("");
-        let droppedCoordinate = boardState[droppedPosition].value.split("");
+        else {
+            console.log("something is being dragged");
+            try{
 
-        let dragX = parseInt(draggedCoordinate[0]);
-        let dragY = parseInt(draggedCoordinate[1]);
-        let dropX = parseInt(droppedCoordinate[0]);
-        let dropY = parseInt(droppedCoordinate[1]);
-        
-        if (Math.abs(dropX-dragX) <= 1 && Math.abs(dropY-dragY) <= 1) {
-            if (dragX % 2 !== dragY % 2) {
-                if (dropX !== dragX && dropY !== dragY) {
-                    console.log("No Path");
-                    activePiece = null;
-                    return;
+                droppedPosition = e.target.attributes.id.value;
+            }
+            catch(err) {
+                console.log("A piece already exists there!");
+                activePiece = null;
+                return;
+            }
+            // console.log("dropped to");
+            // console.log(e.target)
+            // console.log("id = " + e.target.attributes.id.value)    
+            
+            let draggedCoordinate = boardState[draggedPosition].value.split("");
+            let droppedCoordinate = boardState[droppedPosition].value.split("");
+    
+            let dragX = parseInt(draggedCoordinate[0]);
+            let dragY = parseInt(draggedCoordinate[1]);
+            let dropX = parseInt(droppedCoordinate[0]);
+            let dropY = parseInt(droppedCoordinate[1]);
+            
+            if (Math.abs(dropX-dragX) <= 1 && Math.abs(dropY-dragY) <= 1) {
+                if (dragX % 2 !== dragY % 2) {
+                    if (dropX !== dragX && dropY !== dragY) {
+                        console.log("No Path");
+                        activePiece = null;
+                        return;
+                    }
                 }
+                else {
+                    console.log("Legal Move");
+                }
+            }   
+            else {
+                console.log("Can't Jump");
+                activePiece = null;
+                return;
+            }
+            // console.log("dragged X = " + dragX + ", " + "dragged Y = " + dragY);
+            // console.log("dropped X = " + dropX + ", " + "dropped Y = " + dropY);
+            e.target.append(activePiece);
+            boardState[draggedPosition].piece = null;
+            if(goatMove) {
+                boardState[droppedPosition].piece = "goat";    
             }
             else {
-                console.log("Legal Move");
+                boardState[droppedPosition].piece = "tiger";
             }
-        }   
-        else {
-            console.log("Can't Jump");
+            
             activePiece = null;
-            return;
-        }
-        console.log("dragged X = " + dragX + ", " + "dragged Y = " + dragY);
-        console.log("dropped X = " + dropX + ", " + "dropped Y = " + dropY);
-                
-
-        e.target.append(activePiece);
-        boardState[draggedPosition].piece = null;
-        if(goatMove) {
-            boardState[droppedPosition].piece = "goat";    
-        }
-        else {
-            boardState[droppedPosition].piece = "tiger";
-        }
-        
-        activePiece = null;
-        console.log(boardState);
-
+            draggedPosition = null;
+            droppedPosition = null;
+            console.log(boardState);
+        } 
     }
 
     function pieceDragOver(e) {
@@ -121,28 +124,30 @@ function Board() {
             </div>
             <div className="goat-holder">
                 <div onDragStart={(e)=> {pieceDragStert(e)}} onDrop={(e)=> {pieceDrop(e)}} onDragOver={(e)=> {pieceDragOver(e)}} className="goat-image" draggable>
+                    <img id="goat" src={goat} alt = "goat" className="goat-piece"></img>                                   
                     <img id="goat" src={goat} alt = "goat" className="goat-piece"></img>
                     <img id="goat" src={goat} alt = "goat" className="goat-piece"></img>
                     <img id="goat" src={goat} alt = "goat" className="goat-piece"></img>
                     <img id="goat" src={goat} alt = "goat" className="goat-piece"></img>
+                    <img id="goat" src={goat} alt = "goat" className="goat-piece"></img>                                   
                     <img id="goat" src={goat} alt = "goat" className="goat-piece"></img>
                     <img id="goat" src={goat} alt = "goat" className="goat-piece"></img>
                     <img id="goat" src={goat} alt = "goat" className="goat-piece"></img>
                     <img id="goat" src={goat} alt = "goat" className="goat-piece"></img>
+                    <img id="goat" src={goat} alt = "goat" className="goat-piece"></img>                                   
                     <img id="goat" src={goat} alt = "goat" className="goat-piece"></img>
                     <img id="goat" src={goat} alt = "goat" className="goat-piece"></img>
                     <img id="goat" src={goat} alt = "goat" className="goat-piece"></img>
                     <img id="goat" src={goat} alt = "goat" className="goat-piece"></img>
+                    <img id="goat" src={goat} alt = "goat" className="goat-piece"></img>                                   
                     <img id="goat" src={goat} alt = "goat" className="goat-piece"></img>
                     <img id="goat" src={goat} alt = "goat" className="goat-piece"></img>
                     <img id="goat" src={goat} alt = "goat" className="goat-piece"></img>
-                    <img id="goat" src={goat} alt = "goat" className="goat-piece"></img>
-                    <img id="goat" src={goat} alt = "goat" className="goat-piece"></img>
-                    <img id="goat" src={goat} alt = "goat" className="goat-piece"></img>
-                    <img id="goat" src={goat} alt = "goat" className="goat-piece"></img>
-                    <img id="goat" src={goat} alt = "goat" className="goat-piece"></img>
+                    <img id="goat" src={goat} alt = "goat" className="goat-piece"></img>  
                 </div>
-                <div className="goat-counter">{availableGoats}</div>
+                {/* <div onDragStart={(e)=> {pieceDragStert(e)}} onDrop={(e)=> {pieceDrop(e)}} onDragOver={(e)=> {pieceDragOver(e)}} className="goat-image" draggable>
+                    <img id="goat" src={goat} alt = "goat" className="goat-piece"></img>                                                       
+                </div> */}
             </div>
         </div>
     )
