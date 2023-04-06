@@ -40,16 +40,24 @@ function Board() {
             return 0;
         }
         else {
-            console.log("something is being dragged");
-            try{
-
+            if (parseInt(e.target.attributes.id.value)) {
                 droppedPosition = e.target.attributes.id.value;
             }
-            catch(err) {
+            else {
                 console.log("A piece already exists there!");
                 activePiece = null;
                 return;
             }
+            // try{
+
+            //     droppedPosition = e.target.attributes.id.value;
+            // }
+            // catch(err) {
+            //     console.log("A piece already exists there!");
+            //     activePiece = null;
+            //     return;
+            // }
+
             // console.log("dropped to");
             // console.log(e.target)
             // console.log("id = " + e.target.attributes.id.value)    
@@ -74,6 +82,24 @@ function Board() {
                     console.log("Legal Move");
                 }
             }   
+            else if ((Math.abs(dropX-dragX) === 2 
+            || Math.abs(dropY-dragY) === 2) 
+            && (Math.abs(dragX-dropX) % 2 === Math.abs(dragY-dropY) % 2)
+            ) 
+            {
+                if(goatMove) {
+                    console.log("goats cannot Jump!!");
+                    return;
+                }
+                else if ((Math.abs(dragX-dropX) === Math.abs(dragY-dropY)) && (dragX%2 !== dragY%2)) {
+                    console.log("No path to jump");
+                    return;
+                }
+                else {
+                    // tiger capture logic here
+                    console.log("thik xa");
+                }
+            }
             else {
                 console.log("Can't Jump");
                 activePiece = null;
