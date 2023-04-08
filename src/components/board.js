@@ -30,7 +30,6 @@ function Board() {
     function pieceDrop(e) {
         console.log("goatMove = " + goatMove);
         if (!draggedPosition) {
-            e.target.append(activePiece);
             // console.log(e.target.attributes.id.value);
             if (parseInt(e.target.attributes.id.value) || e.target.attributes.id.value === "0") {
                 droppedPosition = e.target.attributes.id.value;
@@ -39,6 +38,7 @@ function Board() {
                 console.log("A piece already exists there.");
                 return;
             }
+            e.target.append(activePiece);
             boardState[droppedPosition].piece = "goat";
             // if (droppedPosition) {
             //     setAvailableGoats(availableGoats - 1);
