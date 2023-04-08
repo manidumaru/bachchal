@@ -3,12 +3,16 @@ import tiger from "../assets/tiger_icon.png";
 import goat from "../assets/goat_icon.png";
 import "./styles/board.css";
 import React, {useState} from 'react';
+import dropSound from "../assets/PieceMoveSounds/normalMove.mp3";
+import captureMove from "../assets/PieceMoveSounds/captureMove.mp3";
+import illegalMoveSound from "../assets/PieceMoveSounds/illegalMove.mp3";
 
 function Board() {
     var activePiece = null;
     var draggedPosition;
     var droppedPosition;
     var goatMove;
+    var sound;
     const [availableGoats, setAvailableGoats] = useState(20);
 
     function pieceDragStert(e) {
@@ -39,6 +43,10 @@ function Board() {
                 return;
             }
             e.target.append(activePiece);
+            sound = document.getElementById("pieceDropSound");
+            console.log(sound);
+            sound.play();
+            sound = null;
             boardState[droppedPosition].piece = "goat";
             // if (droppedPosition) {
             //     setAvailableGoats(availableGoats - 1);
@@ -55,6 +63,9 @@ function Board() {
                 console.log("A piece already exists there!");
                 console.log(e.target.attributes.id.value);
                 activePiece = null;
+                sound = document.getElementById("pieceIllegalMove");
+                sound.play();
+                sound = null;
                 return;
             }
             // try{
@@ -84,6 +95,8 @@ function Board() {
                     if (dropX !== dragX && dropY !== dragY) {
                         console.log("No Path");
                         activePiece = null;
+                        sound = document.getElementById("pieceIllegalMove");
+                        sound.play();
                         return;
                     }
                 }
@@ -99,10 +112,14 @@ function Board() {
             {
                 if(goatMove) {
                     console.log("goats cannot Jump!!");
+                    sound = document.getElementById("pieceIllegalMove");
+                    sound.play();
                     return;
                 }
                 else if ((Math.abs(dragX-dropX) === Math.abs(dragY-dropY)) && (dragX%2 !== dragY%2)) {
                     console.log("No path to jump");
+                    sound = document.getElementById("pieceIllegalMove");
+                    sound.play();
                     return;
                 }
                 else {
@@ -164,11 +181,16 @@ function Board() {
                         let captured_goat = document.getElementById(capture_index);
                         console.log(captured_goat);                        
                         captured_goat.removeChild(captured_goat.firstChild);
+                        sound = document.getElementById("pieceCaptureSound");
+                        sound.play();
+                        sound = null;
                         boardState[capture_index].piece = null;
                         console.log("Valid Capture");
                     }
                     else {
                         console.log("Invalid Move: No goat to capture");
+                        sound = document.getElementById("pieceIllegalMove");
+                        sound.play();
                         return;
                     }
                 }
@@ -176,11 +198,16 @@ function Board() {
             else {
                 console.log("Can't Jump");
                 activePiece = null;
+                sound = document.getElementById("pieceIllegalMove");
+                sound.play();
                 return;
             }
             // console.log("dragged X = " + dragX + ", " + "dragged Y = " + dragY);
             // console.log("dropped X = " + dropX + ", " + "dropped Y = " + dropY);
             e.target.append(activePiece);
+            sound = document.getElementById("pieceDropSound");
+            sound.play();
+            sound = null;
             boardState[draggedPosition].piece = null;
             if(goatMove) {
                 boardState[droppedPosition].piece = "goat";    
@@ -248,6 +275,9 @@ function Board() {
                     <img id="goat" src={goat} alt = "goat" className="goat-piece"></img>                                                       
                 </div> */}
             </div>
+            <audio id ="pieceDropSound" src={dropSound}></audio>
+            <audio id ="pieceCaptureSound" src={captureMove}></audio>
+            <audio id ="pieceIllegalMove" src={illegalMoveSound}></audio>
         </div>
     )
 }
