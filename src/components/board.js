@@ -31,20 +31,29 @@ function Board() {
         console.log("goatMove = " + goatMove);
         if (!draggedPosition) {
             e.target.append(activePiece);
-            console.log(e.target.attributes.id.value);
-            droppedPosition = e.target.attributes.id.value;
+            // console.log(e.target.attributes.id.value);
+            if (parseInt(e.target.attributes.id.value) || e.target.attributes.id.value === "0") {
+                droppedPosition = e.target.attributes.id.value;
+            }
+            else {                
+                console.log("A piece already exists there.");
+                return;
+            }
             boardState[droppedPosition].piece = "goat";
-            // setAvailableGoats(availableGoats - 1)
+            // if (droppedPosition) {
+            //     setAvailableGoats(availableGoats - 1);
+            // }
             console.log(boardState);
             activePiece = null;
             return 0;
         }
         else {
-            if (parseInt(e.target.attributes.id.value)) {
+            if (parseInt(e.target.attributes.id.value) || e.target.attributes.id.value === "0") {
                 droppedPosition = e.target.attributes.id.value;
             }
             else {
                 console.log("A piece already exists there!");
+                console.log(e.target.attributes.id.value);
                 activePiece = null;
                 return;
             }
@@ -81,7 +90,8 @@ function Board() {
                 else {
                     console.log("Legal Move");
                 }
-            }   
+            } 
+            ////////////////////////////////////////////////// Jump Logic ///////////////////////////////////////////////////  
             else if ((Math.abs(dropX-dragX) === 2 
             || Math.abs(dropY-dragY) === 2) 
             && (Math.abs(dragX-dropX) % 2 === Math.abs(dragY-dropY) % 2)
@@ -96,8 +106,71 @@ function Board() {
                     return;
                 }
                 else {
-                    // tiger capture logic here
-                    console.log("thik xa");
+                    ///////////////////////////////////////////////////////////         Tiger-Capture logic here
+                    let adjecentX, adjecentY, capture_index;
+                    if(dragX === dropX) {
+                        adjecentX = dragX;
+                        if ((dragY-dropY) < 0) {
+                            adjecentY = dragY + 1;
+                            console.log("Right Jump"); ////////////////////////         Right Jump               
+                        }
+                        else if ((dragY-dropY) > 0) {
+                            adjecentY = dragY - 1;
+                            console.log("Left Jump");  ////////////////////////         Left Jump
+                        }
+                    }
+                    else if (dragY === dropY) {
+                        adjecentY = dragY;
+                        if (dragX-dropX < 0) {
+                            adjecentX = dragX + 1;
+                            console.log("Down Jump");  ////////////////////////         Down Jump
+                        }
+                        else if (dragX-dropX > 0) {
+                            adjecentX = dragX - 1;
+                            console.log("Up Jump");    ////////////////////////         Up Jump
+                        }
+                    }
+                    else if ((dragX !== dropX) && (dragY !== dropY)) {
+                        if((dragX-dropX > 0) && (dragY-dropY < 0)) {
+                            adjecentX =  dragX - 1;
+                            adjecentY = dragY + 1;
+                            console.log("Top-right Jump");
+                        }
+                        else if ((dragX-dropX > 0) && (dragY-dropY)>0) {
+                            adjecentX = dragX - 1;
+                            adjecentY = dragY - 1;
+                            console.log("Top-left Jump");
+                        }
+                        else if ((dragX-dropX < 0) && (dragY-dropY > 0)) {
+                            adjecentX = dragX + 1;
+                            adjecentY = dragY - 1;
+                            console.log("Down-left Jump");
+                        }
+                        else {
+                            adjecentX = dragX + 1;
+                            adjecentY = dragY + 1; 
+                            console.log("Down-right Jump");
+                        }
+                    }
+                    console.log(`skipped position = (${adjecentX}, ${adjecentY})`);
+                    for (let position in boardState) {
+                        if (boardState[position].value === (adjecentX.toString()+adjecentY.toString())) {
+                            capture_index = position;
+                            break;
+                        }
+                    }
+                    console.log("capture index = " + capture_index);
+                    if (boardState[capture_index].piece === "goat") {
+                        let captured_goat = document.getElementById(capture_index);
+                        console.log(captured_goat);                        
+                        captured_goat.removeChild(captured_goat.firstChild);
+                        boardState[capture_index].piece = null;
+                        console.log("Valid Capture");
+                    }
+                    else {
+                        console.log("Invalid Move: No goat to capture");
+                        return;
+                    }
                 }
             }
             else {
