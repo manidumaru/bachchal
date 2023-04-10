@@ -31,6 +31,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         max_length=150, blank=True, default='')
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
+    profile_present = models.BooleanField(default=False)
     objects = CustomAccountManager()
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'first_name']
