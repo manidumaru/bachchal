@@ -7,10 +7,13 @@ import password from "../../assets/password.png";
 import logo_google from "../../assets/google_logo.png";
 import Modal from "../UI/Modal";
 import axios from "axios";
+import { useGoogleLogin } from '@react-oauth/google'; // Import the useGoogleLogin hook from the @react-oauth/google library
+
 function LogInForm(props) {
   const navigate = useNavigate();
   const state = useContext(useContext);
   const [errorInfo, setErrorInfo] = useState(null);
+
 
   const logIn = async (event) => {
     event.preventDefault();
@@ -47,6 +50,38 @@ function LogInForm(props) {
     userEmail: "",
     userPassword: "",
   });
+
+
+  //google login:
+  // Define a function called login that will be triggered when the user clicks on the Google login button
+  const login = useGoogleLogin({
+    onSuccess: tokenResponse => {
+      console.log(tokenResponse);
+      console.log(tokenResponse.access_token);
+      let accessToken = tokenResponse.access_token
+      // When the user successfully logs in, call the googleLogin function and pass in the access token
+      googleLogin(accessToken);
+      // googleLogin(tokenResponse);
+    },
+  });
+
+  // Define a function called googleLogin that takes an access token as an argument
+  function googleLogin(accessToken) {
+    // Make a POST request to the /api-auth/convert-token endpoint on your server to convert the access token into an access token and refresh token for your application
+    console.log(accessToken);
+    axios
+      .post(`http://127.0.0.1:8000/socialauth/auth/convert-token/`, {
+        token: accessToken,
+        backend: "google-oauth2",
+        grant_type: "convert_token",
+        client_id: "drNWN2pN3vhw35JxGDA26VEishwigMT1TIw5lsD6",
+        client_secret: "FJsKJRnLKHUBvuJqVCqawHUMVYvKyXh2etL0mv5tNEzaXRt0ZEEIQhi7sASYrdYDqIHVKqNZuDZHA4idVCpHpRFTFkSDJhR8rPRpg69KyNEBS5mwRbzz1dhBxGhu8d1c",
+      })
+      .then((res) => {
+        // When the conversion is successful, log the data returned by the server (which includes the access token and refresh token)
+        console.log(res.data);
+      });
+  }
 
   return (
     <Modal onClick={props.onclose}>
@@ -123,7 +158,7 @@ function LogInForm(props) {
             <div className="or_line"></div>
           </div>
           <div className="login_button_google_div">
-            <button className="login_button_google">
+            <button className="login_button_google" onClick={login}>
               <div className="login_button_google_content">
                 <div className="login_button_google_image">
                   <img src={logo_google} height="30px" width="30px"></img>
