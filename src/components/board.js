@@ -7,6 +7,7 @@ import dropSound from "../assets/PieceMoveSounds/normalMove.mp3";
 import captureMove from "../assets/PieceMoveSounds/captureMove.mp3";
 import illegalMoveSound from "../assets/PieceMoveSounds/illegalMove.mp3";
 import notyourmove from "../assets/PieceMoveSounds/1notyourturn.mp3";
+import possibleMovesFinder from "./LegalMoves";
 
 function Board() {
   var activePiece = null;
@@ -14,55 +15,10 @@ function Board() {
   var droppedPosition;
   var goatMove;
   var sound;
+//var moves = [];
+//   const [moves, setMoves] = useState([]);
+
   var whoseTurn = "tiger";
-  const [availableGoats, setAvailableGoats] = useState(20);
-  const [gameStatus, setGameStatus] = useState(1);
-
-  ////////////////////////////////////////////////////////////// Possible moves for Tiger ///////////////////////////////////////////
-  function possibleMovesFinder(index) {
-    var moves = [];
-    let position = parseInt(index);
-    let coordinate = boardState[position].value.split("");
-    let x = parseInt(coordinate[0]);
-    let y = parseInt(coordinate[1]);
-
-    for (let i = x - 3; i < x + 3; i++) {
-      for (let j = y - 3; j < y + 3; j++) {
-        if (
-          i < 0 ||
-          i > 4 ||
-          j < 0 ||
-          j > 4 ||
-          Math.abs(x - i) > 2 ||
-          Math.abs(y - j) > 2
-        ) {
-          continue;
-        }
-        if (x % 2 === y % 2) {
-          if (x !== i && y !== j && Math.abs(x - i) !== Math.abs(y - j)) {
-            continue;
-          }
-          if (i === x && j === y) {
-            continue;
-          } else {
-            let move = i.toString() + j.toString();
-            moves.push(move);
-          }
-        } else {
-          if (x % 2 !== y % 2) {
-            if ((x !== i && y !== j) || (x === i && y === j)) {
-              continue;
-            } else {
-              let move = i.toString() + j.toString();
-              moves.push(move);
-            }
-          }
-        }
-      }
-    }
-    // console.log(moves);
-    return moves;
-  }
 
   function pieceDragStert(e) {
     goatMove = false;
@@ -137,19 +93,6 @@ function Board() {
         sound = null;
         return;
       }
-      // try{
-
-      //     droppedPosition = e.target.attributes.id.value;
-      // }
-      // catch(err) {
-      //     console.log("A piece already exists there!");
-      //     activePiece = null;
-      //     return;
-      // }
-
-      // console.log("dropped to");
-      // console.log(e.target)
-      // console.log("id = " + e.target.attributes.id.value)
 
       let draggedCoordinate = boardState[draggedPosition].value.split("");
       let droppedCoordinate = boardState[droppedPosition].value.split("");
@@ -277,6 +220,13 @@ function Board() {
         boardState[droppedPosition].piece = "tiger";
       }
 
+    //   let move1 = JSON.stringify(draggedPosition)
+    //   let move2 = JSON.stringify(droppedPosition)
+    //   let move = move1 + move2;
+      
+    //   setMoves(arr => [...arr, move]);
+    //   console.log(moves);
+
       activePiece = null;
       draggedPosition = null;
       droppedPosition = null;
@@ -285,6 +235,7 @@ function Board() {
       } else {
         whoseTurn = "tiger";
       }
+      
       //   console.log(boardState);
     }
     //////////////////////////////////////////////Game Over Logic here ////////////////////////////////////////
@@ -314,8 +265,7 @@ function Board() {
         }
       }
 
-      console.log("Game Over");
-      setGameStatus(0);
+      console.log("---------------- Game Over ---------------------");
       // console.log(indices);
     }
   }
@@ -411,6 +361,7 @@ function Board() {
                     <img id="goat" src={goat} alt = "goat" className="goat-piece"></img>                                                       
                 </div> */}
       </div>
+
       <audio id="pieceDropSound" src={dropSound}></audio>
       <audio id="pieceCaptureSound" src={captureMove}></audio>
       <audio id="pieceIllegalMove" src={illegalMoveSound}></audio>

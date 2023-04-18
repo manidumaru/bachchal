@@ -22,7 +22,7 @@
     flex-direction: column;
     justify-content: center; */
     align-items: center;
-    width:200px;
+    width:55px;
     height:500px;
     border: 10px solid #282A3A;
 }
@@ -55,4 +55,8 @@
 .goat-counter {
     font-size: 40px;
     color: #D7D7D7;
+}
+
+.moves-display {
+    background-color: #0E8388;
 }
