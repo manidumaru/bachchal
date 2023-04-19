@@ -1,7 +1,6 @@
 import React from "react";
-import Dots from "../dots";
 
 function Play() {
-  return <Dots key="board" />;
+  return <h1>Fuck You</h1>;
 }
 export default Play;
