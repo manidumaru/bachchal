@@ -1,6 +1,6 @@
-import './App.css';
+import "./App.css";
 // import Dots from './components/dots';
-import Board from './components/board';
+import Board from "./components/board/board";
 
 function App() {
   return (

@@ -1,12 +1,12 @@
 import boardState from "./boardData";
-import tiger from "../assets/tiger_icon.png";
-import goat from "../assets/goat_icon.png";
-import "./styles/board.css";
+import tiger from "../../assets/tiger_icon.png";
+import goat from "../../assets/goat_icon.png";
+import "../styles/board.css";
 import React, { useState } from "react";
-import dropSound from "../assets/PieceMoveSounds/normalMove.mp3";
-import captureMove from "../assets/PieceMoveSounds/captureMove.mp3";
-import illegalMoveSound from "../assets/PieceMoveSounds/illegalMove.mp3";
-import notyourmove from "../assets/PieceMoveSounds/1notyourturn.mp3";
+import dropSound from "../../assets/PieceMoveSounds/normalMove.mp3";
+import captureMove from "../../assets/PieceMoveSounds/captureMove.mp3";
+import illegalMoveSound from "../../assets/PieceMoveSounds/illegalMove.mp3";
+import notyourmove from "../../assets/PieceMoveSounds/1notyourturn.mp3";
 import possibleMovesFinder from "./LegalMoves";
 
 function Board() {
@@ -15,8 +15,8 @@ function Board() {
   var droppedPosition;
   var goatMove;
   var sound;
-//var moves = [];
-//   const [moves, setMoves] = useState([]);
+  //var moves = [];
+  //   const [moves, setMoves] = useState([]);
 
   var whoseTurn = "tiger";
 
@@ -220,12 +220,12 @@ function Board() {
         boardState[droppedPosition].piece = "tiger";
       }
 
-    //   let move1 = JSON.stringify(draggedPosition)
-    //   let move2 = JSON.stringify(droppedPosition)
-    //   let move = move1 + move2;
-      
-    //   setMoves(arr => [...arr, move]);
-    //   console.log(moves);
+      //   let move1 = JSON.stringify(draggedPosition)
+      //   let move2 = JSON.stringify(droppedPosition)
+      //   let move = move1 + move2;
+
+      //   setMoves(arr => [...arr, move]);
+      //   console.log(moves);
 
       activePiece = null;
       draggedPosition = null;
@@ -235,7 +235,7 @@ function Board() {
       } else {
         whoseTurn = "tiger";
       }
-      
+
       //   console.log(boardState);
     }
     //////////////////////////////////////////////Game Over Logic here ////////////////////////////////////////
@@ -260,8 +260,8 @@ function Board() {
       for (let i in indices) {
         let possible_element = document.getElementById(`${indices[i]}`);
         if (!possible_element.hasChildNodes()) {
-            console.log("Game not Over");
-            return;
+          console.log("Game not Over");
+          return;
         }
       }
 
