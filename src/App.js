@@ -7,6 +7,8 @@ import Learn from "./components/Learn/learn";
 import About from "./components/About/about";
 import LogIn from "./components/LogIn/login";
 import SignUp from "./components/LogIn/signup";
+// import Dots from './components/dots';
+import Board from "./components/board/board";
 
 function App() {
   return (

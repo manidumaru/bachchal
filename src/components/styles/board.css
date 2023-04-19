@@ -1,40 +1,62 @@
 
-#baghchal-board {
-    height: 500px;
-    width: 500px;
-    background-color: #D7D7D7;
-    display: flex;
+.board-component-holder {
+    display:flex;
+    /* border: 10px solid #0E8388; */
+}
+
+.board-holder {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin-right:5px;
     flex-wrap: wrap;
+    height:500px;
+    border: 10px solid #0E8388;
+    background-image: url('../../assets/background.png');
+    background-size: 500px;
+    width:500px;
 }
 
-.tiles {
-    height:100px;
-    width:100px;
-    box-sizing: border-box;
-    border: 1px solid #0E8388;
-    position: relative;
+.goat-holder {
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
+    align-items: center;
+    width:55px;
+    height:500px;
+    border: 10px solid #282A3A;
 }
 
-.no-tiles {
-    background-color: #282A3A;
-    height:100px;
-    width:100px;
-    box-sizing: border-box;
-    border: none;
-    position: relative;
-}
-
-.piece-holder {
-    background-color: #D7D7D7;
-    height: 24px;
+.board-position {
+    height:24px;
     width:24px;
+    background-color: white;
+    margin:36px;
+    background-color: #D9D9D9;
+    border: 2px solid #0E8388;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid #0E8388;
-    display: flex;
-    border-radius: 50%;
+}
+
+.tiger-piece {
+    height: 50px;
+    width:50px;
+    cursor: pointer;
+}
+
+.goat-piece {
+    height:55px;
+    width:55px;
     position: absolute;
-    top: -15px;
-    left:-12px;
+}
+
+.goat-counter {
+    font-size: 40px;
+    color: #D7D7D7;
+}
+
+.moves-display {
+    background-color: #0E8388;
 }

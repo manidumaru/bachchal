@@ -1,6 +1,11 @@
 import React from "react";
+import Board from "../board/board";
 
 function Play() {
-  return <h1>Fuck You</h1>;
+  return (
+    <div>
+      <Board></Board>
+    </div>
+  );
 }
 export default Play;
